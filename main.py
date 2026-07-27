@@ -10,14 +10,6 @@ from database import init_db, get_connection, get_employees
 from config import API_TOKEN, ADMIN_IDS
 
 # Modullarga bo'lingan routerlarni import qilish
-# To'g'ridan-to'g'ri fayllardan import qilish (handlers papkasisiz)
-from start import router as start_router
-from employee import router as employee_router
-from kpi import router as kpi_router
-from reports import router as reports_router
-from admin import router as admin_router
-from callbacks import router as callbacks_router
-from reminders import router as reminders_router
 from handlers import (
     start_router,
     employee_router,
