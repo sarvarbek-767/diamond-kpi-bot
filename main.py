@@ -18,6 +18,15 @@ from reports import router as reports_router
 from admin import router as admin_router
 from callbacks import router as callbacks_router
 from reminders import router as reminders_router
+from handlers import (
+    start_router,
+    employee_router,
+    kpi_router,
+    reports_router,
+    admin_router,
+    callbacks_router,
+    reminders_router
+)
 
 async def send_scheduled_reminders_and_reports(bot: Bot):
     last_day_reported = None
