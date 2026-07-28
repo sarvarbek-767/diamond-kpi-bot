@@ -108,46 +108,46 @@ async def send_scheduled_reminders_and_reports(bot: Bot):
 
 # Render port talabini qondirish uchun veb-server
 async def handle(request):
-    return web.Response(text="Bot is live!")[cite: 1]
+    return web.Response(text="Bot is live!")
 
 
 async def main():
-    logging.basicConfig(level=logging.INFO, stream=sys.stdout)[cite: 1]
-    init_db()[cite: 1]
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    init_db()
 
-    bot = Bot(token=API_TOKEN)[cite: 1]
-    dp = Dispatcher()[cite: 1]
+    bot = Bot(token=API_TOKEN)
+    dp = Dispatcher()
     
     # Barcha modullardagi routerlarni Dispatcherga to'g'ri ulash
-    dp.include_router(start_router)[cite: 1]
-    dp.include_router(employee_router)[cite: 1]
-    dp.include_router(kpi_router)[cite: 1]
-    dp.include_router(reports_router)[cite: 1]
-    dp.include_router(admin_router)[cite: 1]
-    dp.include_router(callbacks_router)[cite: 1]
-    dp.include_router(reminders_router)[cite: 1]
+    dp.include_router(start_router)
+    dp.include_router(employee_router)
+    dp.include_router(kpi_router)
+    dp.include_router(reports_router)
+    dp.include_router(admin_router)
+    dp.include_router(callbacks_router)
+    dp.include_router(reminders_router)
 
     await bot.set_my_commands(
-        [BotCommand(command="start", description="Botni ishga tushirish")][cite: 1]
+        [BotCommand(command="start", description="Botni ishga tushirish")]
     )
 
     # Rejalashtirilgan xabarlarni fon rejimida ishga tushirish
-    asyncio.create_task(send_scheduled_reminders_and_reports(bot))[cite: 1]
+    asyncio.create_task(send_scheduled_reminders_and_reports(bot))
 
     # --- Render uchun Web Server (Portni ushlab turish) ---
-    port = int(os.environ.get("PORT", 8080))[cite: 1]
-    app = web.Application()[cite: 1]
-    app.router.add_get("/", handle)[cite: 1]
+    port = int(os.environ.get("PORT", 8080))
+    app = web.Application()
+    app.router.add_get("/", handle)
 
-    runner = web.AppRunner(app)[cite: 1]
-    await runner.setup()[cite: 1]
-    site = web.TCPSite(runner, "0.0.0.0", port)[cite: 1]
-    await site.start()[cite: 1]
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
     # -----------------------------------------------------
 
-    print("Bot muvaffaqiyatli ishga tushdi...")[cite: 1]
-    await dp.start_polling(bot)[cite: 1]
+    print("Bot muvaffaqiyatli ishga tushdi...")
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    asyncio.run(main())[cite: 1]
+    asyncio.run(main())
